@@ -8,20 +8,53 @@ import os
 import csv
 
 #path
-budget_data = os.path.join("..", "Documents", "GitHub", "DataClass", "Homework", "03-Python", "Instructions", "PyBank", "Resources", "budget_data.csv")
+budget_data = os.path.join("budget_data.csv")
 
-#open with and read csv header
+#varibable tracking
+totalMonths = 0
+profitTotal = 0
 
-with open(budget_data,"r") as csvfile:
+oldProfit = 0
+profitChange = 0
+greatestIncrease = ['',0]
+greatestDecrease = ['',99999999]
+
+ #open with and read csv header
+
+with open("budget_data.csv","r") as csvfile:
 
     csvreader = csv.reader(csvfile, delimiter=",")
     header = next(csvreader)
 
+    #loop through rows of data
+    for row in csvreader:
 
+        #totals
+        totalMonths = totalMonths + 1
+        profitTotal = profitTotal + int(row[1])
+        #print (row)
 
+        #changes
+        profitChange = int(row[1]) - oldProfit
+        #print (oldProfit)
 
-# define funtion and link it to budget_data as parameter
-#def average (budget_data):
+print ("Financial Analysis")
+print ("-----------------------")
+print ("Total Months: " + str(totalMonths))
+print ("Total Profit: " + "$" + str(profitTotal)
 
-#totalMonths=len(budget_data[0])
-#Net = int(budget_data[1])
+        #increase
+        if profitChange > greatestIncrease[1]
+            greatestIncrease[1] = profitChange
+            greatestIncrease[0] = row[0]
+            
+        if profitChange < greatestDecrease[1]
+            greatestDecrease[1] = profitChange
+            greatestDecrease[0] = row[0]
+
+#average
+totalAvg = profitTotal / totalMonths
+
+print ("Total Change: " + "$" + str(round(sum(profitChange) / totalMonths ,2))
+print ("Greatest Increase: " + str(greatestIncrease[0]) + " ($" + str(greatestIncrease[1]) + ")")
+print ("Greatest Decrease: " + str(greatestDecrease[0]) + " ($" + str(greatestDecrease[1]) + ")")
